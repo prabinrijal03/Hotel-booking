@@ -29,8 +29,10 @@ export const login = async (req,res)=>{
         if(!isPasswordValid){
             return res.status(500).json("Invalid password");
         }
+        const token = jwt.sign({ userId: user._id, isAdmin: user.isAdmin }, 'secretKey');
+
         const {password, isAdmin, ...otherDetails}= user._doc;
-        res.status(200).json({...otherDetails});
+        res.cookie("access_token", token, {httpOnly:true}).status(200).json({...otherDetails});
     }
     catch(err){
         res.status(500).json(err); 
