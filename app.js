@@ -1,6 +1,5 @@
 import express from "express";
 const app = express();
-import userModel from "./model/User.js";
 import authRoute from "./Routes/auth.js";
 import usersRoute from "./Routes/users.js";
 import hotelsRoute from "./Routes/hotels.js";
