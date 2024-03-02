@@ -48,13 +48,20 @@ export const login = async (req,res)=>{
             return res.status(500).json("Invalid password");
         }
    
-        const token = jwt.sign({userId: user._id, isAdmin: user.isAdmin}, 'secretKey');
+ 
 
-        const {password, isAdmin, ...otherDetails} = user._doc;
-        res.cookie("access_token", token, {httpOnly:true}).status(200).json({...otherDetails});
+    const token = jwt.sign(
+      { userId: user._id, isAdmin: user.isAdmin },
+      "secretKey"
+    );
 
-    } catch (error) {
-        return res.status(500).json("Something went wrong");
-     
-    }
+    const { password, isAdmin, ...otherDetails } = user._doc;
+    res
+      .cookie("access_token", token, { httpOnly: true })
+      .status(200)
+      .json({ ...otherDetails, success: true });
+  } catch (error) {
+    res.status(500).json("Something went wrong");
+  }
 };
+

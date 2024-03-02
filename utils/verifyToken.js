@@ -1,6 +1,6 @@
-import jwt from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 
-export const verifyToken = (req,res,next)=>{
+exports.verifyToken = (req,res,next)=>{
     const token = req.cookies.access_token;
     if(!token){
         return res.status(500).json("You are not authenticated.");
@@ -13,7 +13,7 @@ export const verifyToken = (req,res,next)=>{
         next();
     });
 };
-export const verifyUser = (req,res,next)=>{
+exports.verifyUser = (req,res,next)=>{
     verifyToken(req,res, ()=>{
         if(req.user.id === req.params.id || req.user.isAdmin){
             next();
@@ -23,7 +23,7 @@ export const verifyUser = (req,res,next)=>{
 
     });
 };
-export const verifyAdmin = (req,res,next)=>{
+exports.verifyAdmin = (req,res,next)=>{
     verifyToken(req,res, ()=>{
         if(req.user.isAdmin){
             next();
