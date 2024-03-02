@@ -1,21 +1,21 @@
-const express = require("express");
+import express from "express";
 const app = express();
-const authRoute = require("./Routes/auth.js");
-const usersRoute = require("./Routes/users.js");
-const hotelsRoute = require("./Routes/hotels.js");
-const roomsRoute = require("./Routes/rooms.js");
-const cookieParser = require("cookie-parser");
+import authRoute from "./Routes/auth.js";
+import usersRoute from "./Routes/users.js";
+import hotelsRoute from "./Routes/hotels.js";
+import roomsRoute from "./Routes/rooms.js";
+import cookieParser from "cookie-parser";
 
+//middlewares
 app.use(cookieParser());
 app.use(express.json());
 
-app.use("/", authRoute);
-app.use("/", usersRoute);
-app.use("api/hotels", hotelsRoute);
-app.use("api/rooms", roomsRoute);
-
+app.use('/api/auth', authRoute);
+app.use('/api/users', usersRoute);
+app.use('/api/hotels', hotelsRoute);
+app.use('/api/rooms', roomsRoute);
 
 const port = process.env.PORT;
-app.listen(port, () => {
-  console.log(`Server started at port ${port}`);
+app.listen(port, ()=>{
+    console.log(`Server started at port ${port}`);
 });

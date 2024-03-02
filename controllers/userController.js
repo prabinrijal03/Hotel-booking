@@ -1,6 +1,6 @@
-const User = require("../model/User.js");
+import User from "../model/User.js";
 
-exports.updateUser = async (req,res)=>{
+export const updateUser = async (req,res)=>{
     try {
         const updatedUser = await User.findByIdAndUpdate(req.params.id, { $set:req.body }, { new: true });
         res.status(200).json(updatedUser);
@@ -8,7 +8,7 @@ exports.updateUser = async (req,res)=>{
         res.status(500).json(err);
     }
 }
-exports.deleteUser = async (req,res)=>{
+export const deleteUser = async (req,res)=>{
     try {
         await User.findByIdAndDelete(req.params.id);
         res.status(200).json("User has been deleted.");
@@ -16,7 +16,7 @@ exports.deleteUser = async (req,res)=>{
         res.status(500).json(err);
     }
 }
-exports.getUser = async (req,res)=>{
+export const getUser = async (req,res)=>{
     try {
         const user = await User.findById(req.params.id);
         res.status(200).json(user);
@@ -24,7 +24,7 @@ exports.getUser = async (req,res)=>{
         res.status(500).json(err);
     }
 }
-exports.getAllUser = async (req,res)=>{
+export const getAllUser = async (req,res)=>{
     try {
         const users = await User.find();
         res.status(200).json(users);
