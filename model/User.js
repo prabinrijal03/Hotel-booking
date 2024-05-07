@@ -1,30 +1,37 @@
-import mongoose from "mongoose";
-import db from "../config/db.js";
+const mongoose = require('mongoose');
+const db = require('../config/db.js');
 
-const userSchema = new mongoose.Schema({
-    username:{
-        type: String,
-        required: true,
-        unique: true
+const userSchema = new mongoose.Schema(
+  {
+    fullname: {
+      type: String,
+      required: true,
     },
-    email:{
-        type: String,
-        required: true,
-        unique: true,
-        lowercase: true
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
     },
-    password:{
-        type: String,
-        required: true
+    password: {
+      type: String,
+      required: true,
     },
-    isAdmin:{
-        type: Boolean,
-        default: false
+    isAdmin: {
+      type: Boolean,
+      default: false,
     },
-}, 
-{timestamps: true});
-const userModel = db.model('user', userSchema);
-export default userModel;
-
-
-
+    otp: {
+      type: Number,
+      required: false,
+    },
+    isOtpVerified: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
+  },
+  { timestamps: true }
+);
+const userModel = db.model("user", userSchema);
+module.exports = userModel;
