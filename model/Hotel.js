@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import db from "../config/db.js";
+const mongoose = require("mongoose");
+const db = require("../config/db.js");
 
 const hotelSchema = new mongoose.Schema({
     name:{
@@ -51,4 +51,4 @@ const hotelSchema = new mongoose.Schema({
     }
 });
 const hotelModel = db.model('hotel', hotelSchema);
-export default hotelModel;
+module.exports = hotelModel;

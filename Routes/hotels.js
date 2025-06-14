@@ -1,6 +1,6 @@
-import express from "express";
-import { createHotel, deleteHotel, getAllHotel, getHotel, updateHotel } from "../controllers/hotelController.js";
-import { verifyAdmin } from "../utils/verifyToken.js";
+const express = require("express");
+const { createHotel, deleteHotel, getAllHotel, getHotel, updateHotel } = require("../controllers/hotelController.js");
+const { verifyAdmin } = require("../utils/verifyToken.js");
 const router = express.Router();
 
 //create
@@ -18,4 +18,4 @@ router.get('/:id', getHotel);
 //get all
 router.get('/', getAllHotel);
 
-export default router;
+module.exports = router;

@@ -1,12 +1,11 @@
-import express from "express";
+const express = require("express");
 const app = express();
-import authRoute from "./Routes/auth.js";
-import usersRoute from "./Routes/users.js";
-import hotelsRoute from "./Routes/hotels.js";
-import roomsRoute from "./Routes/rooms.js";
-import cookieParser from "cookie-parser";
+const authRoute = require("./Routes/auth.js");
+const usersRoute = require("./Routes/users.js");
+const hotelsRoute = require("./Routes/hotels.js");
+const roomsRoute = require("./Routes/rooms.js");
+const cookieParser = require("cookie-parser");
 
-//middlewares
 app.use(cookieParser());
 app.use(express.json());
 

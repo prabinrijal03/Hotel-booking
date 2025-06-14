@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import db from "../config/db.js";
+const mongoose = require("mongoose");
+const db = require("../config/db.js");
 
 const userSchema = new mongoose.Schema({
     username:{
@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
 }, 
 {timestamps: true});
 const userModel = db.model('user', userSchema);
-export default userModel;
+module.exports = userModel;
 
 
 
